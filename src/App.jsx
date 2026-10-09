@@ -1,26 +1,6 @@
-﻿
-import { useState } from 'react'
-import {
-  ArrowDownRight,
-  ArrowRight,
-  CheckCircle2,
-  ChevronRight,
-  Clock3,
-  HardHat,
-  MapPin,
-  Menu,
-  MessageCircle,
-  Mountain,
-  PackageCheck,
-  Phone,
-  ShieldCheck,
-  Truck,
-  X,
-} from 'lucide-react'
+﻿import { useState } from 'react';
 
-// IMPORTANT: Replace this placeholder with the real company WhatsApp number.
-// Use 254 followed by the number, without + or the leading zero.
-const WHATSAPP_NUMBER = '254706496180'
+const WHATSAPP_NUMBER = '254706496180';
 
 const IMAGES = {
   logo: '/images/sky-quarry-logo.png',
@@ -28,66 +8,134 @@ const IMAGES = {
   stones: '/images/building-stones.jpg',
   cutting: '/images/stone-cutting.jpg',
   delivery: '/images/delivery-truck.jpg',
-}
+};
 
 const products = [
   {
-    number: '01',
+    id: 'machine-cut-stones',
     title: 'Machine-Cut Stones',
     description:
-      'Neatly cut building stones for strong walls and clean, consistent finishes.',
+      'Quality machine-cut building stones for residential, commercial, and other construction projects.',
     image: IMAGES.stones,
-    tag: 'BUILDING',
+    number: '01',
+  },
+  {
+    id: 'stone-cutting',
+    title: 'Stone Cutting',
+    description:
+      'Stone cutting solutions to help meet your construction material requirements.',
+    image: IMAGES.cutting,
+    number: '02',
+  },
+  {
+    id: 'stone-delivery',
+    title: 'Stone Supply & Delivery',
+    description:
+      'Discuss your stone quantities, project needs, and delivery arrangements with our team.',
+    image: IMAGES.delivery,
+    number: '03',
+  },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Tell Us What You Need',
+    description:
+      'Share your preferred stone type, quantity, delivery location, and project requirements.',
   },
   {
     number: '02',
-    title: 'Foundation Stones',
+    title: 'Request a Quotation',
     description:
-      'Dependable stone supply for foundations and demanding construction work.',
-    image: IMAGES.cutting,
-    tag: 'FOUNDATION',
+      'Contact our team to discuss pricing, availability, quantities, and delivery arrangements.',
   },
   {
     number: '03',
-    title: 'Bulk Stone Supply',
+    title: 'Arrange Your Delivery',
     description:
-      'Organised supply for contractors, property developers and large projects.',
-    image: IMAGES.delivery,
-    tag: 'PROJECTS',
+      'Confirm your order details and coordinate delivery with our team.',
   },
-]
+];
 
-const benefits = [
-  {
-    icon: ShieldCheck,
-    title: 'Quality-focused supply',
-    text: 'Stone options selected to suit your construction requirements.',
-  },
-  {
-    icon: Mountain,
-    title: 'Cutting expertise',
-    text: 'Stone cutting solutions with consistency and precision in mind.',
-  },
-  {
-    icon: Truck,
-    title: 'Delivery coordination',
-    text: 'Plan transportation around your site location and order requirements.',
-  },
-]
+const navigation = [
+  { label: 'Home', href: '#home' },
+  { label: 'Our Products', href: '#products' },
+  { label: 'Our Process', href: '#process' },
+  { label: 'About Us', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
 
-function WhatsAppLink({
-  children,
-  className = '',
-  message = 'Hello Sky Quarry Investments. I would like to enquire about your building stones.',
-}) {
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+function ArrowRight({ className = 'h-5 w-5' }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={className}
+    >
+      <path
+        d="M5 12h14M12 5l7 7-7 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
-  function handleClick(event) {
-    if (WHATSAPP_NUMBER.includes('X')) {
-      event.preventDefault()
-      alert('Please add the real company WhatsApp number in src/App.jsx first.')
-    }
-  }
+function WhatsAppIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M20.52 3.48A11.87 11.87 0 0 0 12.06 0C5.5 0 .16 5.33.16 11.9c0 2.1.55 4.16 1.6 5.98L.06 24l6.27-1.64a11.9 11.9 0 0 0 5.72 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.44-8.44ZM12.06 21.8h-.01a9.88 9.88 0 0 1-5.03-1.37l-.36-.21-3.72.97.99-3.63-.23-.37a9.85 9.85 0 0 1-1.51-5.29c0-5.46 4.44-9.9 9.9-9.9a9.83 9.83 0 0 1 7.01 2.91 9.83 9.83 0 0 1 2.9 7.01c0 5.46-4.44 9.88-9.94 9.88Zm5.43-7.4c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.23 5.14 4.53.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35Z" />
+    </svg>
+  );
+}
+
+function CompanyLogo({ light = false }) {
+  return (
+    <a
+      href="#home"
+      aria-label="Sky Quarry Investments home"
+      className="flex items-center gap-3"
+    >
+      <img
+        src={IMAGES.logo}
+        alt="Sky Quarry Investments logo"
+        className="h-12 w-12 shrink-0 rounded-lg object-contain"
+      />
+
+      <span>
+        <span
+          className={`block text-base font-extrabold leading-tight tracking-tight ${
+            light ? 'text-white' : 'text-slate-950'
+          }`}
+        >
+          SKY QUARRY
+        </span>
+
+        <span
+          className={`mt-1 block text-[10px] font-bold uppercase tracking-[0.22em] ${
+            light ? 'text-slate-300' : 'text-slate-500'
+          }`}
+        >
+          Investments
+        </span>
+      </span>
+    </a>
+  );
+}
+
+function WhatsAppLink({ children, className = '', message = '' }) {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}${
+    message ? `?text=${encodeURIComponent(message)}` : ''
+  }`;
 
   return (
     <a
@@ -95,651 +143,1016 @@ function WhatsAppLink({
       target="_blank"
       rel="noopener noreferrer"
       className={className}
-      onClick={handleClick}
     >
       {children}
     </a>
-  )
+  );
 }
 
-function CompanyLogo({ footer = false }) {
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  light = false,
+}) {
   return (
-    <a
-      href="#home"
-      className="inline-flex items-center gap-3"
-      aria-label="Sky Quarry Investments home"
+    <div
+      data-aos="fade-up"
+      className="mx-auto mb-12 max-w-2xl text-center"
     >
-      <img
-        src={IMAGES.logo}
-        alt="Sky Quarry Investments logo"
-        className={`${footer ? 'h-10 w-10' : 'h-12 w-12'} shrink-0 object-contain`}
-      />
+      <p
+        className={`mb-3 text-xs font-extrabold uppercase tracking-[0.22em] ${
+          light ? 'text-blue-300' : 'text-blue-700'
+        }`}
+      >
+        {eyebrow}
+      </p>
 
-      <span>
-        <span
-          className={`block font-black leading-tight tracking-[-0.06em] ${
-            footer ? 'text-sm text-white' : 'text-[17px] text-slate-900'
+      <h2
+        className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${
+          light ? 'text-white' : 'text-slate-950'
+        }`}
+      >
+        {title}
+      </h2>
+
+      {description && (
+        <p
+          className={`mt-4 text-base leading-7 ${
+            light ? 'text-slate-300' : 'text-slate-600'
           }`}
         >
-          SKY QUARRY
-        </span>
-        <span
-          className={`mt-1 block text-[9px] font-bold uppercase tracking-[0.24em] ${
-            footer ? 'text-slate-400' : 'text-slate-500'
-          }`}
-        >
-          Investments
-        </span>
-      </span>
-    </a>
-  )
-}
-
-function Header() {
-  const [open, setOpen] = useState(false)
-
-  const links = [
-    ['Home', '#home'],
-    ['Our stones', '#stones'],
-    ['Our process', '#process'],
-    ['About us', '#about'],
-    ['Contact', '#contact'],
-  ]
-
-  return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-      <div className="container flex h-[76px] items-center justify-between">
-        <CompanyLogo />
-
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              className="text-[13px] font-semibold text-slate-600 transition hover:text-[#0055ff]"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <WhatsAppLink className="hidden items-center gap-2 rounded-lg bg-[#0055ff] px-5 py-3 text-xs font-bold text-white transition hover:bg-blue-700 sm:flex">
-          Get a quotation <ArrowRight size={15} />
-        </WhatsAppLink>
-
-        <button
-          type="button"
-          className="rounded-lg border border-slate-200 p-2 text-slate-800 md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? 'Close navigation' : 'Open navigation'}
-          aria-expanded={open}
-        >
-          {open ? <X size={23} /> : <Menu size={23} />}
-        </button>
-      </div>
-
-      {open && (
-        <nav className="border-t border-slate-100 bg-white px-5 py-4 md:hidden">
-          {links.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className="block border-b border-slate-100 py-3 text-sm font-semibold text-slate-700"
-            >
-              {label}
-            </a>
-          ))}
-
-          <WhatsAppLink className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-[#0055ff] px-4 py-3 text-sm font-bold text-white">
-            Request a quotation <ArrowRight size={16} />
-          </WhatsAppLink>
-        </nav>
-      )}
-    </header>
-  )
-}
-
-function Hero() {
-  return (
-    <section id="home" className="blueprint-grid relative overflow-hidden">
-      <div className="container grid min-h-[610px] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-20">
-        <div className="reveal-up relative z-10">
-          <div className="eyebrow">STONE SUPPLY Â· CUTTING Â· DELIVERY</div>
-
-          <h1 className="mt-6 max-w-2xl text-[clamp(44px,6.4vw,76px)] font-black leading-[.99] tracking-[-.075em] text-[#17243a]">
-            Built on stone.
-            <br />
-            <span className="text-[#0055ff]">Driven by</span>
-            <br />
-            <span className="relative inline-block">
-              reliability.
-              <span className="absolute bottom-1 left-0 -z-10 h-3 w-full bg-[#ffc700]" />
-            </span>
-          </h1>
-
-          <p className="mt-7 max-w-lg text-[15px] leading-8 text-slate-600">
-            The right stones make a stronger start. We help homeowners, fundis
-            and contractors source building stones, arrange cutting and
-            coordinate delivery to site.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#stones"
-              className="inline-flex items-center gap-3 rounded-lg bg-[#0055ff] px-6 py-4 text-sm font-bold text-white shadow-lg shadow-blue-600/15 transition hover:-translate-y-0.5 hover:bg-blue-700"
-            >
-              Explore our stones <ArrowRight size={17} />
-            </a>
-
-            <WhatsAppLink className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-4 text-sm font-bold text-slate-800 transition hover:border-[#0055ff] hover:text-[#0055ff]">
-              <MessageCircle size={17} /> Get a quote
-            </WhatsAppLink>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-slate-200 pt-6 text-xs font-semibold text-slate-600">
-            <span className="flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-[#0055ff]" />
-              Construction-focused
-            </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-[#0055ff]" />
-              Delivery coordination
-            </span>
-          </div>
-        </div>
-
-        <div className="reveal-up relative mx-auto w-full max-w-[550px]">
-          <div className="absolute -right-4 -top-4 h-28 w-28 border-r-4 border-t-4 border-[#ffc700]" />
-
-          <div
-            className="hero-image relative min-h-[390px] overflow-hidden rounded-2xl bg-slate-300 shadow-2xl shadow-slate-900/15 sm:min-h-[470px]"
-            style={{
-              backgroundImage: `linear-gradient(180deg, rgba(11,25,49,.02) 30%, rgba(11,25,49,.78) 100%), url('${IMAGES.background}')`,
-            }}
-          >
-            <div className="absolute left-5 top-5 flex items-center gap-2 rounded-md bg-white/95 px-3 py-2 text-[10px] font-extrabold uppercase tracking-[.15em] text-slate-800">
-              <span className="h-2 w-2 rounded-full bg-[#0055ff]" />
-              Materials for your next build
-            </div>
-
-            <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/20 bg-slate-950/70 p-5 text-white backdrop-blur-md sm:inset-x-7 sm:bottom-7 sm:p-6">
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#ffc700]">
-                    From supply to site
-                  </p>
-                  <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
-                    Your build starts here.
-                  </h2>
-                </div>
-
-                <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#ffc700] text-slate-950 sm:flex">
-                  <ArrowDownRight size={25} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute -bottom-4 -left-4 -z-10 h-24 w-24 bg-[#0055ff]" />
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function TrustStrip() {
-  const items = [
-    { icon: PackageCheck, title: 'Stone supply', text: 'For different build needs' },
-    { icon: HardHat, title: 'Cutting solutions', text: 'Based on your specifications' },
-    { icon: Truck, title: 'Transport planning', text: 'Coordinated to your site' },
-    { icon: Clock3, title: 'Responsive service', text: 'Clear quotation process' },
-  ]
-
-  return (
-    <section className="border-y border-slate-200 bg-white">
-      <div className="container grid grid-cols-2 divide-x divide-y divide-slate-200 sm:grid-cols-4 sm:divide-y-0">
-        {items.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="flex items-start gap-3 px-3 py-6 sm:px-5 sm:py-7">
-            <Icon size={21} className="mt-1 shrink-0 text-[#0055ff]" />
-            <div>
-              <p className="text-xs font-extrabold text-slate-900">{title}</p>
-              <p className="mt-1 text-[10px] leading-5 text-slate-500">{text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function Products({ onSelect }) {
-  return (
-    <section id="stones" className="section-space bg-white">
-      <div className="container">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div>
-            <div className="eyebrow">WHAT WE SUPPLY</div>
-            <h2 className="section-title max-w-2xl">
-              The materials behind <br className="hidden sm:block" />
-              every solid beginning.
-            </h2>
-          </div>
-          <p className="section-copy md:max-w-sm">
-            Tell us what you are building. We will help you discuss suitable
-            stone options, quantities and delivery requirements.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {products.map((product) => (
-            <article
-              key={product.number}
-              className="product-card group overflow-hidden rounded-xl border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5"
-            >
-              <div className="relative h-[230px] overflow-hidden bg-slate-200">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  loading="lazy"
-                  className="product-image absolute inset-0 h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
-                <span className="absolute left-4 top-4 rounded bg-white px-3 py-2 text-[9px] font-extrabold tracking-[.15em] text-[#0055ff]">
-                  {product.tag}
-                </span>
-                <span className="absolute bottom-3 right-4 text-4xl font-black tracking-[-.08em] text-white/70">
-                  {product.number}
-                </span>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-extrabold tracking-tight text-slate-900">
-                  {product.title}
-                </h3>
-                <p className="mt-3 min-h-[72px] text-sm leading-6 text-slate-500">
-                  {product.description}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => onSelect(product.title)}
-                  className="mt-5 flex w-full items-center justify-between border-t border-slate-100 pt-4 text-left text-xs font-extrabold text-[#0055ff] transition group-hover:text-blue-800"
-                >
-                  Enquire about this <ChevronRight size={17} />
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <p className="mt-5 text-xs leading-6 text-slate-400">
-          Product categories shown for enquiry purposes. Confirm available stone
-          types, dimensions and specifications with the company.
+          {description}
         </p>
-      </div>
-    </section>
-  )
+      )}
+    </div>
+  );
 }
 
-function Process() {
-  const steps = [
-    ['01', 'Tell us your needs', 'Share your stone type, approximate quantity and project requirements.'],
-    ['02', 'Get your quotation', 'Discuss material availability, cutting needs, pricing and transport.'],
-    ['03', 'Coordinate delivery', 'Agree on the delivery location and schedule before confirming your order.'],
-  ]
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <section id="process" className="section-space blueprint-grid">
-      <div className="container">
-        <div className="text-center">
-          <div className="eyebrow">SIMPLE. PRACTICAL. CLEAR.</div>
-          <h2 className="section-title">From quarry to construction site.</h2>
-          <p className="section-copy mx-auto">
-            A straightforward way to start your next building-materials order.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {steps.map(([number, title, description]) => (
-            <div
-              key={number}
-              className="relative rounded-xl border border-slate-200 bg-white p-7 sm:p-8"
-            >
-              <span className="text-4xl font-black tracking-[-.08em] text-[#0055ff]/20">
-                {number}
-              </span>
-              <h3 className="mt-5 text-xl font-extrabold tracking-tight text-slate-900">
-                {title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-500">{description}</p>
-              {number !== '03' && (
-                <ArrowRight className="absolute right-6 top-9 hidden text-[#ffc700] md:block" size={20} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function About() {
-  return (
-    <section id="about" className="section-space bg-[#17243a] text-white">
-      <div className="container grid items-center gap-12 lg:grid-cols-[.9fr_1.1fr]">
-        <div className="relative">
-          <div className="absolute -left-3 -top-3 h-16 w-16 border-l-4 border-t-4 border-[#ffc700]" />
-          <img
-            src={IMAGES.cutting}
-            alt="Stone cutting and construction materials"
-            className="h-[340px] w-full rounded-xl object-cover sm:h-[410px]"
-            loading="lazy"
-          />
-          <div className="absolute -bottom-4 right-4 rounded-lg bg-[#ffc700] px-5 py-4 text-slate-950 sm:right-7">
-            <p className="text-xs font-black uppercase tracking-wider">Building with purpose</p>
-            <p className="mt-1 text-[10px] font-semibold">One project at a time</p>
-          </div>
-        </div>
-
-        <div className="pt-3 lg:pl-4">
-          <div className="eyebrow !text-[#ffc700]">ABOUT SKY QUARRY INVESTMENTS</div>
-          <h2 className="mt-5 text-4xl font-black leading-[1.07] tracking-[-.06em] sm:text-5xl">
-            Strong materials.
-            <br />
-            <span className="text-[#ffc700]">Stronger partnerships.</span>
-          </h2>
-          <p className="mt-6 text-sm leading-8 text-slate-300">
-            Sky Quarry Investments focuses on helping construction customers
-            source building stones, access cutting services and organise
-            transportation. Our goal is to make the material-sourcing process
-            clearer and more convenient for every project.
-          </p>
-
-          <div className="mt-8 space-y-4">
-            {benefits.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="flex gap-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#ffc700]">
-                  <Icon size={20} />
-                </span>
-                <div>
-                  <h3 className="text-sm font-bold">{title}</h3>
-                  <p className="mt-1 text-xs leading-6 text-slate-400">{text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Contact({ initialProduct }) {
   const [form, setForm] = useState({
     name: '',
     phone: '',
-    product: initialProduct || 'Machine-Cut Stones',
+    product: '',
     quantity: '',
     location: '',
     details: '',
-  })
+  });
 
-  function update(event) {
-    const { name, value } = event.target
-    setForm((previous) => ({ ...previous, [name]: value }))
-  }
+  const [formError, setFormError] = useState('');
 
-  function submit(event) {
-    event.preventDefault()
+  const update = (event) => {
+    const { name, value } = event.target;
 
-    if (WHATSAPP_NUMBER.includes('X')) {
-      alert('Replace 2547XXXXXXXX in src/App.jsx with the company WhatsApp number first.')
-      return
+    setForm((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+
+    if (formError) {
+      setFormError('');
+    }
+  };
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const selectProduct = (productTitle) => {
+    setForm((previous) => ({
+      ...previous,
+      product: productTitle,
+    }));
+
+    setMenuOpen(false);
+
+    document.getElementById('contact')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
+  const submitForm = (event) => {
+    event.preventDefault();
+    setFormError('');
+
+    const phoneDigits = form.phone.replace(/\D/g, '');
+
+    if (phoneDigits.length < 7) {
+      setFormError('Please enter a valid phone number.');
+      return;
     }
 
     const message = [
-      'Hello Sky Quarry Investments. I would like a quotation.',
+      'Hello Sky Quarry Investments,',
       '',
-      `Name: ${form.name}`,
-      `Phone: ${form.phone || 'Not provided'}`,
-      `Product: ${form.product}`,
-      `Estimated quantity: ${form.quantity || 'Please advise'}`,
-      `Delivery location: ${form.location}`,
-      `Additional details: ${form.details || 'None'}`,
-    ].join('\n')
+      'I would like to request a quotation.',
+      '',
+      `Name: ${form.name.trim()}`,
+      `Phone: ${form.phone.trim()}`,
+      `Product: ${form.product || 'Not specified'}`,
+      `Quantity: ${form.quantity.trim() || 'Not specified'}`,
+      `Delivery location: ${form.location.trim() || 'Not specified'}`,
+      `Additional details: ${form.details.trim() || 'None provided'}`,
+    ].join('\n');
 
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-      '_blank',
-      'noopener,noreferrer',
-    )
-  }
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
-    <section id="contact" className="section-space bg-[#f4f7fb]">
-      <div className="container grid items-start gap-12 lg:grid-cols-[.8fr_1.2fr]">
-        <div className="lg:sticky lg:top-28">
-          <div className="eyebrow">LET'S DISCUSS YOUR PROJECT</div>
-          <h2 className="section-title">Your next build starts with a conversation.</h2>
-          <p className="section-copy">
-            Share a few details and send your enquiry directly to our WhatsApp.
-            We can discuss the stone requirements and delivery arrangements with you.
-          </p>
+    <div className="min-h-screen overflow-x-clip bg-white text-slate-900">
+      {/* NAVIGATION */}
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+          <CompanyLogo />
 
-          <div className="mt-8 space-y-4">
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-50 text-[#0055ff]">
-                <MessageCircle size={21} />
-              </span>
-              <div>
-                <p className="text-sm font-bold text-slate-900">WhatsApp enquiries</p>
-                <p className="mt-1 text-xs text-slate-500">Send project details directly</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-amber-50 text-[#8c6512]">
-                <MapPin size={21} />
-              </span>
-              <div>
-                <p className="text-sm font-bold text-slate-900">Delivery planning</p>
-                <p className="mt-1 text-xs text-slate-500">Tell us where your project is located</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <form
-          onSubmit={submit}
-          className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/5 sm:p-8"
-        >
-          <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-5">
-            <div>
-              <p className="text-[10px] font-extrabold uppercase tracking-[.18em] text-[#0055ff]">
-                Quotation request
-              </p>
-              <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">
-                Tell us about your order.
-              </h3>
-            </div>
-            <span className="hidden h-12 w-12 items-center justify-center rounded-xl bg-[#0055ff] text-[#ffc700] sm:flex">
-              <PackageCheck size={24} />
-            </span>
-          </div>
-
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
-            <label className="text-xs font-bold text-slate-700">
-              Your name *
-              <input
-                required
-                name="name"
-                value={form.name}
-                onChange={update}
-                placeholder="Enter your name"
-                className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-normal outline-none transition focus:border-[#0055ff] focus:ring-2 focus:ring-blue-100"
-              />
-            </label>
-
-            <label className="text-xs font-bold text-slate-700">
-              Your phone number
-              <input
-                name="phone"
-                value={form.phone}
-                onChange={update}
-                placeholder="07XX XXX XXX"
-                className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-normal outline-none transition focus:border-[#0055ff] focus:ring-2 focus:ring-blue-100"
-              />
-            </label>
-
-            <label className="text-xs font-bold text-slate-700 sm:col-span-2">
-              What do you need? *
-              <select
-                required
-                name="product"
-                value={form.product}
-                onChange={update}
-                className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-normal outline-none focus:border-[#0055ff]"
+          <nav
+            aria-label="Main navigation"
+            className="hidden items-center gap-6 lg:flex"
+          >
+            {navigation.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-semibold text-slate-600 transition hover:text-blue-700"
               >
-                <option>Machine-Cut Stones</option>
-                <option>Foundation Stones</option>
-                <option>Bulk Stone Supply</option>
-                <option>Stone Cutting</option>
-                <option>Transport / Delivery</option>
-                <option>Other / Not Sure</option>
-              </select>
-            </label>
+                {item.label}
+              </a>
+            ))}
+          </nav>
 
-            <label className="text-xs font-bold text-slate-700">
-              Estimated quantity
-              <input
-                name="quantity"
-                value={form.quantity}
-                onChange={update}
-                placeholder="e.g. 2,000 stones"
-                className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-normal outline-none focus:border-[#0055ff]"
-              />
-            </label>
-
-            <label className="text-xs font-bold text-slate-700">
-              Delivery location *
-              <input
-                required
-                name="location"
-                value={form.location}
-                onChange={update}
-                placeholder="Town or project location"
-                className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-normal outline-none focus:border-[#0055ff]"
-              />
-            </label>
-
-            <label className="text-xs font-bold text-slate-700 sm:col-span-2">
-              More about your project
-              <textarea
-                name="details"
-                value={form.details}
-                onChange={update}
-                rows={3}
-                placeholder="Stone dimensions, project type, delivery timing..."
-                className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-normal outline-none focus:border-[#0055ff]"
-              />
-            </label>
-          </div>
+          <WhatsAppLink
+            className="hidden items-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-800 sm:inline-flex"
+            message="Hello Sky Quarry Investments, I would like a quotation for building stones."
+          >
+            Get a Quotation
+            <ArrowRight />
+          </WhatsAppLink>
 
           <button
-            type="submit"
-            className="mt-6 flex w-full items-center justify-center gap-3 rounded-lg bg-[#0055ff] px-6 py-4 text-sm font-extrabold text-white transition hover:bg-blue-700"
+            type="button"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 text-slate-800 transition hover:bg-slate-100 lg:hidden"
           >
-            Send quotation request <MessageCircle size={18} />
+            {menuOpen ? (
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-6 w-6"
+              >
+                <path
+                  d="m6 6 12 12M18 6 6 18"
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-6 w-6"
+              >
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  strokeLinecap="round"
+                />
+              </svg>
+            )}
           </button>
-
-          <p className="mt-3 text-center text-[10px] leading-5 text-slate-400">
-            Your details will be placed in a WhatsApp message for you to send.
-          </p>
-        </form>
-      </div>
-    </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="bg-[#101b2d] text-white">
-      <div className="container grid gap-10 py-12 md:grid-cols-[1.3fr_.7fr_1fr]">
-        <div>
-          <CompanyLogo footer />
-          <p className="mt-5 max-w-sm text-xs leading-7 text-slate-400">
-            Building-materials supply, stone cutting and transport coordination
-            for your next construction project.
-          </p>
         </div>
 
-        <div>
-          <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#ffc700]">
-            Explore
-          </h3>
-          <div className="mt-4 space-y-3 text-xs text-slate-400">
-            <a className="block transition hover:text-white" href="#stones">Our stones</a>
-            <a className="block transition hover:text-white" href="#process">Our process</a>
-            <a className="block transition hover:text-white" href="#about">About us</a>
-            <a className="block transition hover:text-white" href="#contact">Request a quote</a>
-          </div>
-        </div>
+        {menuOpen && (
+          <nav
+            id="mobile-navigation"
+            aria-label="Mobile navigation"
+            className="border-t border-slate-200 bg-white px-4 py-3 shadow-lg lg:hidden"
+          >
+            <div className="mx-auto flex max-w-7xl flex-col">
+              {navigation.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-blue-700"
+                >
+                  {item.label}
+                </a>
+              ))}
 
-        <div>
-          <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#ffc700]">
-            Let's build
-          </h3>
-          <p className="mt-4 text-xs leading-6 text-slate-400">
-            Have a project coming up? Start a conversation about your materials
-            and delivery needs.
-          </p>
-          <WhatsAppLink className="mt-4 inline-flex items-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-xs font-bold transition hover:border-[#ffc700] hover:text-[#ffc700]">
-            <Phone size={15} /> Contact us <ArrowRight size={15} />
-          </WhatsAppLink>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10">
-        <div className="container flex flex-col justify-between gap-2 py-5 text-[10px] text-slate-500 sm:flex-row">
-          <span>Â© {new Date().getFullYear()} Sky Quarry Investments. All rights reserved.</span>
-          <span>Built for stronger beginnings.</span>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-export default function App() {
-  const [selectedProduct, setSelectedProduct] = useState('Machine-Cut Stones')
-
-  function selectProduct(product) {
-    setSelectedProduct(product)
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  return (
-    <>
-      <Header />
+              <WhatsAppLink
+                className="mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-700 px-4 py-3 text-sm font-bold text-white"
+                message="Hello Sky Quarry Investments, I would like a quotation for building stones."
+              >
+                <WhatsAppIcon />
+                Get a Quotation
+              </WhatsAppLink>
+            </div>
+          </nav>
+        )}
+      </header>
 
       <main>
-        <Hero />
-        <TrustStrip />
-        <Products onSelect={selectProduct} />
-        <Process />
-        <About />
-        <Contact key={selectedProduct} initialProduct={selectedProduct} />
+        {/* HERO SECTION */}
+        <section
+          id="home"
+          className="relative isolate flex min-h-[590px] scroll-mt-24 items-center overflow-hidden bg-slate-950 sm:min-h-[650px]"
+        >
+          <img
+            src={IMAGES.background}
+            alt="Quarry landscape and stone supply operations"
+            fetchPriority="high"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/35" />
+
+          <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+            <div
+              data-aos="fade-up"
+              className="max-w-3xl"
+            >
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-blue-400" />
+                STONE SUPPLY · CUTTING · DELIVERY
+              </div>
+
+              <h1 className="text-4xl font-black leading-[1.12] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                Building Stronger
+                <span className="mt-2 block text-blue-400">
+                  Foundations.
+                </span>
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
+                Your construction starts with quality building stones. Sky
+                Quarry Investments provides stone supply solutions for
+                residential, commercial, and other construction projects.
+              </p>
+
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#products"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-blue-700 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-600"
+                >
+                  Explore Our Products
+                  <ArrowRight />
+                </a>
+
+                <WhatsAppLink
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/40 bg-white/10 px-6 py-4 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
+                  message="Hello Sky Quarry Investments, I would like to discuss my construction stone requirements."
+                >
+                  <WhatsAppIcon />
+                  Talk to Our Team
+                </WhatsAppLink>
+              </div>
+
+              <div className="mt-12 grid max-w-xl grid-cols-1 gap-5 border-t border-white/20 pt-6 sm:grid-cols-3">
+                <div>
+                  <p className="text-sm font-bold text-white">
+                    Quality-focused
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-slate-300">
+                    Stone supply for construction
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-white">
+                    Project solutions
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-slate-300">
+                    Options for different needs
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-white">
+                    Direct enquiries
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-slate-300">
+                    Discuss your order with us
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* KEY BENEFITS */}
+        <section className="border-b border-slate-200 bg-white">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-8 sm:px-6 md:grid-cols-3 lg:px-8">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="0"
+              className="flex items-start gap-4"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-6 w-6"
+                >
+                  <path
+                    d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"
+                    strokeLinejoin="round"
+                  />
+                  <path d="m4.5 7.7 7.5 4.4 7.5-4.4M12 12.1V21" />
+                </svg>
+              </div>
+
+              <div>
+                <h2 className="font-bold text-slate-900">
+                  Building Stone Supply
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  Explore stone options for your construction project.
+                </p>
+              </div>
+            </div>
+
+            <div
+              data-aos="fade-up"
+              data-aos-delay="100"
+              className="flex items-start gap-4"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-6 w-6"
+                >
+                  <path
+                    d="M3 7h11v10H3zM14 10h4l3 4v3h-7z"
+                    strokeLinejoin="round"
+                  />
+                  <circle cx="7.5" cy="18" r="1.5" />
+                  <circle cx="17.5" cy="18" r="1.5" />
+                </svg>
+              </div>
+
+              <div>
+                <h2 className="font-bold text-slate-900">
+                  Delivery Coordination
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  Discuss quantities and delivery arrangements with our team.
+                </p>
+              </div>
+            </div>
+
+            <div
+              data-aos="fade-up"
+              data-aos-delay="200"
+              className="flex items-start gap-4"
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-6 w-6"
+                >
+                  <path
+                    d="M12 3 20 6v5c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6l8-3Z"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="m8.5 12 2.3 2.3 4.7-4.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <div>
+                <h2 className="font-bold text-slate-900">
+                  Customer Support
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  Contact us to discuss your specific stone requirements.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PRODUCTS */}
+        <section
+          id="products"
+          className="scroll-mt-24 bg-slate-50 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        >
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="What We Supply"
+              title="Stone Solutions for Your Project"
+              description="Explore our stone supply and cutting options. Contact us to discuss availability, quantities, pricing, and delivery."
+            />
+
+            <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+              {products.map((product) => (
+                <article
+                  key={product.id}
+                  data-aos="fade-up"
+                  data-aos-delay={Number(product.number) * 100}
+                  className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="relative h-60 overflow-hidden bg-slate-200">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent" />
+
+                    <span className="absolute bottom-4 left-5 text-sm font-extrabold tracking-[0.18em] text-white">
+                      {product.number}
+                    </span>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-extrabold text-slate-950">
+                      {product.title}
+                    </h3>
+
+                    <p className="mt-3 min-h-[72px] text-sm leading-6 text-slate-600">
+                      {product.description}
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={() => selectProduct(product.title)}
+                      className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-blue-700 transition hover:text-blue-900"
+                    >
+                      Enquire About This Product
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div
+              data-aos="fade-up"
+              className="mt-10 text-center"
+            >
+              <p className="text-sm text-slate-600">
+                Looking for something specific?
+              </p>
+
+              <a
+                href="#contact"
+                className="mt-2 inline-flex min-h-11 items-center gap-2 font-bold text-blue-700 hover:text-blue-900"
+              >
+                Tell Us About Your Project
+                <ArrowRight />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section
+          id="process"
+          className="scroll-mt-24 bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        >
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="How It Works"
+              title="From Enquiry to Delivery"
+              description="A straightforward process to help you communicate your requirements and plan your stone order."
+            />
+
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {processSteps.map((step) => (
+                <article
+                  key={step.number}
+                  data-aos="fade-up"
+                  data-aos-delay={Number(step.number) * 100}
+                  className="rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-blue-200 hover:shadow-lg"
+                >
+                  <span className="text-5xl font-black tracking-tight text-blue-100">
+                    {step.number}
+                  </span>
+
+                  <h3 className="mt-5 text-xl font-extrabold text-slate-950">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {step.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <div
+              data-aos="fade-up"
+              className="mt-10 flex justify-center"
+            >
+              <a
+                href="#contact"
+                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-slate-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-800"
+              >
+                Start Your Enquiry
+                <ArrowRight />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ABOUT US */}
+        <section
+          id="about"
+          className="scroll-mt-24 overflow-hidden bg-slate-950"
+        >
+          <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+            <div
+              data-aos="fade-right"
+              className="relative min-h-[320px] overflow-hidden sm:min-h-[420px] lg:min-h-[540px]"
+            >
+              <img
+                src={IMAGES.cutting}
+                alt="Stone cutting work for construction materials"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+
+              <div className="absolute inset-0 bg-slate-950/20" />
+            </div>
+
+            <div
+              data-aos="fade-left"
+              className="flex items-center px-5 py-14 sm:px-10 sm:py-16 lg:px-14"
+            >
+              <div className="max-w-xl">
+                <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.22em] text-blue-300">
+                  About Sky Quarry Investments
+                </p>
+
+                <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+                  Supporting Your Construction Journey
+                </h2>
+
+                <p className="mt-6 text-base leading-8 text-slate-300">
+                  Sky Quarry Investments focuses on building stone supply and
+                  helping customers communicate their construction material
+                  requirements clearly.
+                </p>
+
+                <p className="mt-4 text-base leading-8 text-slate-300">
+                  Whether you are planning a home, commercial building, or
+                  another construction project, our team is available to
+                  discuss your stone requirements and delivery arrangements.
+                </p>
+
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                      <span className="text-sm font-bold">✓</span>
+                    </span>
+
+                    <p className="text-sm leading-6 text-slate-200">
+                      Enquiries for different construction stone requirements.
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                      <span className="text-sm font-bold">✓</span>
+                    </span>
+
+                    <p className="text-sm leading-6 text-slate-200">
+                      Quotation requests based on your project needs.
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                      <span className="text-sm font-bold">✓</span>
+                    </span>
+
+                    <p className="text-sm leading-6 text-slate-200">
+                      Direct communication to discuss orders and delivery.
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="#contact"
+                  className="mt-9 inline-flex min-h-12 items-center gap-3 rounded-lg bg-blue-700 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-600"
+                >
+                  Contact Our Team
+                  <ArrowRight />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CALL TO ACTION */}
+        <section className="bg-blue-700 px-4 py-16 sm:px-6 lg:px-8">
+          <div
+            data-aos="fade-up"
+            className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-7 md:flex-row md:items-center"
+          >
+            <div className="max-w-2xl">
+              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-200">
+                Planning Your Next Project?
+              </p>
+
+              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                Let's Discuss Your Stone Requirements.
+              </h2>
+
+              <p className="mt-4 max-w-xl text-base leading-7 text-blue-100">
+                Tell us what you need, how much you require, and where your
+                project is located.
+              </p>
+            </div>
+
+            <WhatsAppLink
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-lg bg-white px-6 py-4 text-sm font-extrabold text-blue-800 transition hover:bg-blue-50"
+              message="Hello Sky Quarry Investments, I would like to discuss a quotation for my construction project."
+            >
+              <WhatsAppIcon />
+              Request a Quotation
+              <ArrowRight />
+            </WhatsAppLink>
+          </div>
+        </section>
+
+        {/* CONTACT AND QUOTATION FORM */}
+        <section
+          id="contact"
+          className="scroll-mt-24 bg-slate-50 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+        >
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Get In Touch"
+              title="Request a Quotation"
+              description="Complete the form below. Your enquiry will be prepared in WhatsApp so you can review and send it directly to our team."
+            />
+
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-12">
+              {/* CONTACT DETAILS */}
+              <div
+                data-aos="fade-right"
+                className="lg:col-span-2"
+              >
+                <div className="rounded-2xl bg-slate-950 p-6 text-white sm:p-8">
+                  <h3 className="text-2xl font-extrabold">
+                    Let's Talk Business
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-slate-300">
+                    Have questions about our stone supply, pricing, or
+                    delivery? Reach out to discuss your requirements.
+                  </p>
+
+                  <div className="mt-8 space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                        <WhatsAppIcon />
+                      </div>
+
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                          WhatsApp
+                        </p>
+
+                        <WhatsAppLink
+                          className="mt-1 inline-block text-sm font-semibold text-white hover:text-blue-300"
+                          message="Hello Sky Quarry Investments, I would like to make an enquiry."
+                        >
+                          Chat With Our Team
+                        </WhatsAppLink>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          className="h-5 w-5"
+                        >
+                          <path
+                            d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"
+                            strokeLinejoin="round"
+                          />
+                          <circle cx="12" cy="9" r="2.5" />
+                        </svg>
+                      </div>
+
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                          Service Location
+                        </p>
+
+                        <p className="mt-1 text-sm font-semibold text-white">
+                          Contact us to discuss your delivery location.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          className="h-5 w-5"
+                        >
+                          <path
+                            d="M4 5h16v14H4z"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="m4 7 8 6 8-6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                          Enquiries
+                        </p>
+
+                        <p className="mt-1 text-sm font-semibold text-white">
+                          Building stones and construction supplies
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 border-t border-white/15 pt-6">
+                    <p className="text-sm leading-6 text-slate-300">
+                      For a faster quotation, include your stone type,
+                      estimated quantity, and delivery location.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* QUOTATION FORM */}
+              <div
+                data-aos="fade-left"
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8 lg:col-span-3"
+              >
+                <h3 className="text-xl font-extrabold text-slate-950">
+                  Your Project Details
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Fields marked with * are required.
+                </p>
+
+                <form onSubmit={submitForm} className="mt-7 space-y-5">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <label className="block text-sm font-bold text-slate-700">
+                      Your Full Name *
+                      <input
+                        type="text"
+                        name="name"
+                        autoComplete="name"
+                        value={form.name}
+                        onChange={update}
+                        placeholder="Enter your full name"
+                        required
+                        maxLength={100}
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </label>
+
+                    <label className="block text-sm font-bold text-slate-700">
+                      Your Phone Number *
+                      <input
+                        type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        name="phone"
+                        value={form.phone}
+                        onChange={update}
+                        placeholder="07XX XXX XXX"
+                        required
+                        minLength={7}
+                        maxLength={25}
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </label>
+                  </div>
+
+                  <label className="block text-sm font-bold text-slate-700">
+                    Product or Service *
+                    <select
+                      name="product"
+                      value={form.product}
+                      onChange={update}
+                      required
+                      className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                    >
+                      <option value="">Select a product or service</option>
+                      {products.map((product) => (
+                        <option key={product.id} value={product.title}>
+                          {product.title}
+                        </option>
+                      ))}
+                      <option value="Other construction stone requirements">
+                        Other construction stone requirements
+                      </option>
+                    </select>
+                  </label>
+
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                    <label className="block text-sm font-bold text-slate-700">
+                      Estimated Quantity
+                      <input
+                        type="text"
+                        name="quantity"
+                        value={form.quantity}
+                        onChange={update}
+                        placeholder="e.g. 1,000 stones"
+                        maxLength={100}
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </label>
+
+                    <label className="block text-sm font-bold text-slate-700">
+                      Delivery Location
+                      <input
+                        type="text"
+                        name="location"
+                        autoComplete="shipping locality"
+                        value={form.location}
+                        onChange={update}
+                        placeholder="Town or project location"
+                        maxLength={150}
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </label>
+                  </div>
+
+                  <label className="block text-sm font-bold text-slate-700">
+                    Additional Information
+                    <textarea
+                      name="details"
+                      value={form.details}
+                      onChange={update}
+                      rows={4}
+                      maxLength={1500}
+                      placeholder="Tell us about your project, preferred delivery date, or other requirements."
+                      className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                    />
+                  </label>
+
+                  {formError && (
+                    <p
+                      role="alert"
+                      className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700"
+                    >
+                      {formError}
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg bg-blue-700 px-6 py-4 text-sm font-extrabold text-white transition hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                  >
+                    <WhatsAppIcon />
+                    Send Enquiry Through WhatsApp
+                    <ArrowRight />
+                  </button>
+
+                  <p className="text-center text-xs leading-5 text-slate-500">
+                    WhatsApp will open with your enquiry prepared. Review the
+                    message and press Send in WhatsApp to submit it.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <Footer />
+      {/* FOOTER */}
+      <footer className="bg-slate-950 text-white">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+            <div data-aos="fade-up">
+              <CompanyLogo light />
 
+              <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400">
+                Building stone supply and construction material solutions
+                for your project. Contact Sky Quarry Investments to discuss
+                your requirements.
+              </p>
+            </div>
+
+            <div
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">
+                Quick Links
+              </h3>
+
+              <nav
+                aria-label="Footer navigation"
+                className="mt-5 grid grid-cols-2 gap-x-5 gap-y-3"
+              >
+                {navigation.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-slate-400 transition hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            <div
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-white">
+                Contact Our Team
+              </h3>
+
+              <p className="mt-5 text-sm leading-7 text-slate-400">
+                Have a construction project in mind? Send us your requirements
+                and request a quotation.
+              </p>
+
+              <WhatsAppLink
+                className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg bg-blue-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-600"
+                message="Hello Sky Quarry Investments, I would like to make an enquiry about your products and services."
+              >
+                <WhatsAppIcon />
+                Chat on WhatsApp
+                <ArrowRight />
+              </WhatsAppLink>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} Sky Quarry Investments. All rights
+              reserved.
+            </p>
+
+            <a
+              href="#home"
+              className="inline-flex items-center gap-2 transition hover:text-white"
+            >
+              Back to Top
+              <span aria-hidden="true">↑</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+
+      {/* FLOATING WHATSAPP BUTTON */}
       <WhatsAppLink
-        message="Hello Sky Quarry Investments. I would like to discuss a building stone order."
-        className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#16a34a] text-white shadow-xl shadow-green-900/25 transition hover:scale-105"
+        message="Hello Sky Quarry Investments, I would like to make an enquiry."
+        className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-white shadow-xl transition hover:scale-105 hover:bg-green-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 sm:bottom-7 sm:right-7"
       >
-        <MessageCircle size={26} />
+        <WhatsAppIcon className="h-7 w-7" />
         <span className="sr-only">Contact us on WhatsApp</span>
       </WhatsAppLink>
-    </>
-  )
+    </div>
+  );
 }
 
+export default App;
