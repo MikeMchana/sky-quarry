@@ -2,13 +2,13 @@
 
 const WHATSAPP_NUMBER = '254706496180';
 
-const IMAGES = {
-  logo: '/images/sky-quarry-logo.png',
-  background: '/images/quarry-background.jpg',
-  stones: '/images/building-stones.jpg',
-  cutting: '/images/stone-cutting.jpg',
-  delivery: '/images/delivery-truck.jpg',
-};
+const IMAGES= {
+  logo: '/images/sky-quarry-logo.webp',
+  background: '/images/quarry-background.webp',
+  stones: '/images/building-stones.webp',
+  cutting: '/images/stone-cutting.webp',
+  delivery: '/images/delivery-truck.webp',
+}
 
 const products = [
   {
@@ -162,7 +162,7 @@ function SectionHeading({
     >
       <p
         className={`mb-3 text-xs font-extrabold uppercase tracking-[0.22em] ${
-          light ? 'text-blue-300' : 'text-blue-700'
+          light ? 'text-[#FFC700]' : 'text-[#0055FF]'
         }`}
       >
         {eyebrow}
@@ -278,7 +278,7 @@ function App() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-semibold text-slate-600 transition hover:text-blue-700"
+                className="text-sm font-semibold text-slate-600 transition hover:text-[#0055FF]"
               >
                 {item.label}
               </a>
@@ -286,7 +286,7 @@ function App() {
           </nav>
 
           <WhatsAppLink
-            className="hidden items-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-800 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-lg bg-[#0055FF] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0047D6] sm:inline-flex"
             message="Hello Sky Quarry Investments, I would like a quotation for building stones."
           >
             Get a Quotation
@@ -345,14 +345,14 @@ function App() {
                   key={item.href}
                   href={item.href}
                   onClick={closeMenu}
-                  className="rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-blue-700"
+                  className="rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-[#0055FF]"
                 >
                   {item.label}
                 </a>
               ))}
 
               <WhatsAppLink
-                className="mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-700 px-4 py-3 text-sm font-bold text-white"
+                className="mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#0055FF] px-4 py-3 text-sm font-bold text-white"
                 message="Hello Sky Quarry Investments, I would like a quotation for building stones."
               >
                 <WhatsAppIcon />
@@ -384,13 +384,13 @@ function App() {
               className="max-w-3xl"
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-white backdrop-blur-sm">
-                <span className="h-2 w-2 rounded-full bg-blue-400" />
+                <span className="h-2 w-2 rounded-full bg-[#FFC700]" />
                 STONE SUPPLY · CUTTING · DELIVERY
               </div>
 
               <h1 className="text-4xl font-black leading-[1.12] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
                 Building Stronger
-                <span className="mt-2 block text-blue-400">
+                <span className="mt-2 block text-[#FFC700]">
                   Foundations.
                 </span>
               </h1>
@@ -404,7 +404,7 @@ function App() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#products"
-                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-blue-700 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-600"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-[#0055FF] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#0047D6]"
                 >
                   Explore Our Products
                   <ArrowRight />
@@ -459,7 +459,7 @@ function App() {
               data-aos-delay="0"
               className="flex items-start gap-4"
             >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#0055FF]/5 text-[#0055FF]">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -491,7 +491,7 @@ function App() {
               data-aos-delay="100"
               className="flex items-start gap-4"
             >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#0055FF]/5 text-[#0055FF]">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -524,7 +524,7 @@ function App() {
               data-aos-delay="200"
               className="flex items-start gap-4"
             >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#0055FF]/5 text-[#0055FF]">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -604,7 +604,7 @@ function App() {
                     <button
                       type="button"
                       onClick={() => selectProduct(product.title)}
-                      className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-blue-700 transition hover:text-blue-900"
+                      className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#0055FF] transition hover:text-[#003DB8]"
                     >
                       Enquire About This Product
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -624,7 +624,7 @@ function App() {
 
               <a
                 href="#contact"
-                className="mt-2 inline-flex min-h-11 items-center gap-2 font-bold text-blue-700 hover:text-blue-900"
+                className="mt-2 inline-flex min-h-11 items-center gap-2 font-bold text-[#0055FF] hover:text-[#003DB8]"
               >
                 Tell Us About Your Project
                 <ArrowRight />
@@ -651,9 +651,9 @@ function App() {
                   key={step.number}
                   data-aos="fade-up"
                   data-aos-delay={Number(step.number) * 100}
-                  className="rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-blue-200 hover:shadow-lg"
+                  className="rounded-2xl border border-slate-200 bg-white p-7 transition hover:border-[#0055FF]/40 hover:shadow-lg"
                 >
-                  <span className="text-5xl font-black tracking-tight text-blue-100">
+                  <span className="text-5xl font-black tracking-tight text-white/90">
                     {step.number}
                   </span>
 
@@ -674,7 +674,7 @@ function App() {
             >
               <a
                 href="#contact"
-                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-slate-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-800"
+                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-slate-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-[#0047D6]"
               >
                 Start Your Enquiry
                 <ArrowRight />
@@ -708,7 +708,7 @@ function App() {
               className="flex items-center px-5 py-14 sm:px-10 sm:py-16 lg:px-14"
             >
               <div className="max-w-xl">
-                <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.22em] text-blue-300">
+                <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.22em] text-[#FFC700]">
                   About Sky Quarry Investments
                 </p>
 
@@ -730,7 +730,7 @@ function App() {
 
                 <div className="mt-8 space-y-4">
                   <div className="flex items-start gap-3">
-                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#FFC700]/15 text-[#FFC700]">
                       <span className="text-sm font-bold">✓</span>
                     </span>
 
@@ -740,7 +740,7 @@ function App() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#FFC700]/15 text-[#FFC700]">
                       <span className="text-sm font-bold">✓</span>
                     </span>
 
@@ -750,7 +750,7 @@ function App() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#FFC700]/15 text-[#FFC700]">
                       <span className="text-sm font-bold">✓</span>
                     </span>
 
@@ -762,7 +762,7 @@ function App() {
 
                 <a
                   href="#contact"
-                  className="mt-9 inline-flex min-h-12 items-center gap-3 rounded-lg bg-blue-700 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-600"
+                  className="mt-9 inline-flex min-h-12 items-center gap-3 rounded-lg bg-[#0055FF] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#0047D6]"
                 >
                   Contact Our Team
                   <ArrowRight />
@@ -773,13 +773,13 @@ function App() {
         </section>
 
         {/* CALL TO ACTION */}
-        <section className="bg-blue-700 px-4 py-16 sm:px-6 lg:px-8">
+        <section className="bg-[#0055FF] px-4 py-16 sm:px-6 lg:px-8">
           <div
             data-aos="fade-up"
             className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-7 md:flex-row md:items-center"
           >
             <div className="max-w-2xl">
-              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-blue-200">
+              <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#FFC700]">
                 Planning Your Next Project?
               </p>
 
@@ -787,14 +787,14 @@ function App() {
                 Let's Discuss Your Stone Requirements.
               </h2>
 
-              <p className="mt-4 max-w-xl text-base leading-7 text-blue-100">
+              <p className="mt-4 max-w-xl text-base leading-7 text-white/90">
                 Tell us what you need, how much you require, and where your
                 project is located.
               </p>
             </div>
 
             <WhatsAppLink
-              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-lg bg-white px-6 py-4 text-sm font-extrabold text-blue-800 transition hover:bg-blue-50"
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-3 rounded-lg bg-white px-6 py-4 text-sm font-extrabold text-[#0055FF] transition hover:bg-[#0055FF]/5"
               message="Hello Sky Quarry Investments, I would like to discuss a quotation for my construction project."
             >
               <WhatsAppIcon />
@@ -834,7 +834,7 @@ function App() {
 
                   <div className="mt-8 space-y-6">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#FFC700]">
                         <WhatsAppIcon />
                       </div>
 
@@ -844,7 +844,7 @@ function App() {
                         </p>
 
                         <WhatsAppLink
-                          className="mt-1 inline-block text-sm font-semibold text-white hover:text-blue-300"
+                          className="mt-1 inline-block text-sm font-semibold text-white hover:text-[#FFC700]"
                           message="Hello Sky Quarry Investments, I would like to make an enquiry."
                         >
                           Chat With Our Team
@@ -853,7 +853,7 @@ function App() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#FFC700]">
                         <svg
                           aria-hidden="true"
                           viewBox="0 0 24 24"
@@ -882,7 +882,7 @@ function App() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-blue-300">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#FFC700]">
                         <svg
                           aria-hidden="true"
                           viewBox="0 0 24 24"
@@ -950,7 +950,7 @@ function App() {
                         placeholder="Enter your full name"
                         required
                         maxLength={100}
-                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20"
                       />
                     </label>
 
@@ -967,7 +967,7 @@ function App() {
                         required
                         minLength={7}
                         maxLength={25}
-                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20"
                       />
                     </label>
                   </div>
@@ -979,7 +979,7 @@ function App() {
                       value={form.product}
                       onChange={update}
                       required
-                      className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20"
                     >
                       <option value="">Select a product or service</option>
                       {products.map((product) => (
@@ -1003,7 +1003,7 @@ function App() {
                         onChange={update}
                         placeholder="e.g. 1,000 stones"
                         maxLength={100}
-                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20"
                       />
                     </label>
 
@@ -1017,7 +1017,7 @@ function App() {
                         onChange={update}
                         placeholder="Town or project location"
                         maxLength={150}
-                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                        className="mt-2 min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20"
                       />
                     </label>
                   </div>
@@ -1031,7 +1031,7 @@ function App() {
                       rows={4}
                       maxLength={1500}
                       placeholder="Tell us about your project, preferred delivery date, or other requirements."
-                      className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      className="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-normal outline-none transition placeholder:text-slate-400 focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20"
                     />
                   </label>
 
@@ -1046,7 +1046,7 @@ function App() {
 
                   <button
                     type="submit"
-                    className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg bg-blue-700 px-6 py-4 text-sm font-extrabold text-white transition hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg bg-[#0055FF] px-6 py-4 text-sm font-extrabold text-white transition hover:bg-[#0047D6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0055FF]"
                   >
                     <WhatsAppIcon />
                     Send Enquiry Through WhatsApp
@@ -1116,7 +1116,7 @@ function App() {
               </p>
 
               <WhatsAppLink
-                className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg bg-blue-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-600"
+                className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#0055FF] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#0047D6]"
                 message="Hello Sky Quarry Investments, I would like to make an enquiry about your products and services."
               >
                 <WhatsAppIcon />
